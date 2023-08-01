@@ -20,9 +20,10 @@ class Deque:
         return self._data[self._front]
     
     def last(self):
-        index = (self._front + self._size) % len(self._data)
+        index = (self._front + self._size - 1) % len(self._data)
         return self._data[index]
     
+    '''function to add to the beginning of the queue'''
     def add_first(self, e):
         #set index
         index = (self._front-1) % len(self._data)
@@ -32,21 +33,24 @@ class Deque:
         self._front = (self._front-1) % len(self._data)
         self._size += 1
 
+        #double queue size if queue filled
         if self._size == len(self._data):
             self.resize(2*len(self._data))
 
+    '''function to add to the end of the queue'''
     def add_last(self, e):
         #set index
-        index = (self._front + self._size + 1) % len(self._data)
+        index = (self._front + self._size) % len(self._data)
         
         #update queue and size
         self._data[index] = e
         self._size += 1
 
-        
+        #double queue size if queue filled
         if self._size == len(self._data):
             self.resize(2*len(self._data))
     
+    '''function to remove from the beginning of the queue'''
     def delete_first(self):
         if self.is_empty():
             raise Empty("Queue is empty")
@@ -62,17 +66,19 @@ class Deque:
 
         if self._size <= self.DEFAULT_CAP:
             return answer
-        
+
+        #halve queue size if elements less than 1/4 of queue        
         if 4*self._size <= len(self._data):
             self.resize(len(self._data)//2)
             return answer
         
+    '''function to remove from the end of the queue'''
     def delete_last(self):        
         if self.is_empty():
             raise Empty("Queue is empty")
 
         #set index
-        index = (self._front + self._size) % len(self._data)
+        index = (self._front + self._size - 1) % len(self._data)
 
         #update queue and size
         answer = self._data[index]
@@ -82,11 +88,15 @@ class Deque:
         if len(self._data) <= self.DEFAULT_CAP:
             return answer
         
+        #halve queue size if elements less than 1/4 of queue
         if 4*self._size <= len(self._data):
             self.resize(len(self._data)//2)
             return answer
 
-
+    '''
+    function resize the queue
+    parameter n will be the new size of queue
+    '''
     def resize(self, n):
         #set walk and create new queue
         walk = self._front
