@@ -14,11 +14,13 @@ class Stack:
         self._data.append(e)
     
     def top(self):
+        #raise error if stack empty
         if self.is_empty():
             raise Empty("Stack is empty")
         return self._data[-1]
     
     def pop(self):
+        #raise error if stack empty
         if self.is_empty():
             raise Empty("Stack is empty")
         return self._data.pop()

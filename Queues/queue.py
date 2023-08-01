@@ -1,9 +1,11 @@
 #queue implementation in python
 
 class Queues:
+    #set default queue size
+    DEFAULT_CAP = 8
 
     def __init__(self):
-        self._data = [None]*8
+        self._data = [None] * self.DEFAULT_CAP
         self._size = int(0)
         self._front = int(0)
 
@@ -14,33 +16,37 @@ class Queues:
         return self._size == 0
     
     def first(self):
+        #raise error if queue empty
         if self.is_empty():
             raise Empty("Queue is empty")
         
         return self._data[self._front]
     
     def enqueue(self, e):
+        #double queue size if queue is full
         if self._size == self.__len__():
             self.resize(2*self._size)
         
-        index = (self._front+self._size)%self.__len__()
+        #add element to queue
+        index = (self._front+self._size) % self.__len__()
         self._data[index] = e
         self._size  += 1
     
     def dequeue(self):
-
+        #raise error if queue empty
         if self.is_empty():
             raise Empty("Queue is empty")
         
+        #remove element from queue and update front and size
         answer = self._data[self._front]
-
         self._data[self._front] = None
         self._front = (self._front+1)%self.__len__()
         self._size  -= 1
 
-        if self.__len__()<=8:
+        if self.__len__() <= self.DEFAULT_CAP:
             return answer
         
+        #halve queue size if elements less than 1/4 of queue
         if 4*self._size == self.__len__():
             self.resize(self.__len__()//2)
         
@@ -48,17 +54,15 @@ class Queues:
     
     def resize(self, n):
         walk = self._front
+        new = [None] * n
         
-        new = [None]*n
-        
+        #assign values to new list and update list and front
         for i in range(self._size):
             new[i] = self._data[walk]
             walk = (walk+1)%self.__len__()
         
         self._data = new
         self._front = 0
-        print(self._data)
-
 
 
 class Empty(Exception):
