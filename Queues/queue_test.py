@@ -1,30 +1,38 @@
 from queue import Queues
-'''
+
 q = Queues()
 
+print(q._data)
 q.enqueue(5)
+print(q._data)
 q.enqueue(3)
-print(q.__len__())
-print(q.dequeue())
+print(q._data)
+print(q._size)
+
+print(q.dequeue(), q._data)
 print(q.is_empty())
-print(q.dequeue())
+print(q.dequeue(), q._data)
 print(q.is_empty())
 
-q.enqueue(6)
+q.enqueue(7)
+print(q._data)
 q.enqueue(9)
+print(q._data)
 print(q.first())
 q.enqueue(4)
-print(q.__len__())
-print(q.dequeue())
-'''
+print(q._data)
+print(q._size)
+print(q.dequeue(), q._data)
+
+
 resizeTest = Queues()
 
 for i in range(100):
-    resizeTest.enqueue(0)
-    print(len(resizeTest), i)
+    resizeTest.enqueue(i)
+    print(i, len(resizeTest))
 
 print("increment finished")
 
-for i in range(100):
+for i in range(95):
     resizeTest.dequeue()
-    print(len(resizeTest), 100-i)
+    print(95-i, len(resizeTest))

@@ -2,7 +2,6 @@ from stack import Stack
 
 number = Stack()
 
-print(number.top())
 number.push(5)
 number.push(3)
 number.push(6)
@@ -17,4 +16,4 @@ print(number.pop())
 print(number.pop())
 print(number.pop())
 
-print(number.pop())
+number.pop()    #should raise stack is empty error
