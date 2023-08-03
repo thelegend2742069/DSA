@@ -24,9 +24,11 @@ class SinglyLinkedList:
     def add_node(self, element):
         new = self._Node(element, self._head)
         self._head = new
+        self._size += 1
     
     def delete_node(self, node):
         answer = node._element
         self._head = node._next
         node._element = node._next = None
+        self._size -= 1
         return answer

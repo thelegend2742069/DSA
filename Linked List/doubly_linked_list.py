@@ -32,9 +32,13 @@ class DoublyLinkedList:
         node = self._Node(element, predecessor, successor)
         successor._prev = node
         predecessor._next = node
+        self._size += 1
     
     def delete_node(self, node, predecessor, successor):
         #deletes node between predecessor and successor
+        answer = node._element
         node._prev = node._next = node._element = None
         successor._prev = predecessor
         predecessor._next = successor
+        self._size -= 1
+        return answer

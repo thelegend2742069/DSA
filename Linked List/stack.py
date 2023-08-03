@@ -6,7 +6,6 @@ class LinkedStack(SinglyLinkedList):
     #adds element to top of stack
     def push(self, element):
         self.add_node(element)
-        self._size += 1
 
     #removes element from top of stack and returns it
     def pop(self):
@@ -14,8 +13,6 @@ class LinkedStack(SinglyLinkedList):
             raise Empty("Stack is empty")       #raises error if stack is empty
         
         answer = self.delete_node(self._head)
-        self._size -= 1
-
         return answer
     
     #returns element at top of stack
