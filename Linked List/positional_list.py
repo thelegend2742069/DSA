@@ -47,19 +47,19 @@ class PositionalList(DoublyLinkedList):
         if self.is_empty():
             return Empty("list is empty")
         
-        return self._make_position(p._prev)
+        return self._make_position(p._node._prev)
     
     def after(self, p):
         if self.is_empty():
             return Empty("list is empty")
         
-        return self._make_position(p._next)
+        return self._make_position(p._node._next)
     
     def __iter__(self):
         cursor = self.first()
 
         while cursor is not None:
-            yield cursor.element
+            yield cursor.element()
             cursor = self.after(cursor)
         
     #-------------------------------------mutator methods-----------------------------------------
@@ -90,8 +90,6 @@ class PositionalList(DoublyLinkedList):
         node = self._validate(p)
         return self.delete_node(node, node._prev, node._next)
         
-
-
 
 
 class Empty(Exception):
