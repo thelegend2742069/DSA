@@ -1,53 +1,28 @@
 #stack implementation in python using singly linked list
 
-class LinkedStack:
-    #---------------------------------Node Class--------------------------------------
-    class _Node:
-        #stores element and next link for a node
-        
-        #__slots__ reduces memory usage
-        __slots__ = '_element', '_next'
+from singly_linked_list import SinglyLinkedList
 
-        def __init__(self, element, next):
-            self._element = element
-            self._next = next
-        
-    #------------------------------internal methods------------------------------------
-    def __init__(self):
-        self._head = None
-        self._size = 0
-    
-    def __len__(self):
-        return self._size
-    
-    def is_empty(self):
-        return self._size == 0
-    
-
-    #---------------------------------user methods--------------------------------------
+class LinkedStack(SinglyLinkedList):
+    #adds element to top of stack
     def push(self, element):
-        #set new element as head and link it to old head
-        self._head = self._Node(element, self._head)
+        self.add_node(element)
         self._size += 1
-    
+
+    #removes element from top of stack and returns it
     def pop(self):
         if self.is_empty():
-            raise Empty("Stack is empty")
+            raise Empty("Stack is empty")       #raises error if stack is empty
         
-        answer = self._head._element
-        
-        #set next element as head
-        self._head = self._head._next
+        answer = self.delete_node(self._head)
         self._size -= 1
 
-        #return element in old head
         return answer
     
+    #returns element at top of stack
     def top(self):
         if self.is_empty():
-            raise Empty("Stack is empty")
+            raise Empty("Stack is empty")       #raises error if stack is empty
 
-        #return element in head
         return self._head._element
 
 
