@@ -38,7 +38,7 @@ class Tree:
 
     #----------------------------concrete methods--------------------------------
     def is_empty(self):
-        return len(p) == 0
+        return len(self) == 0
     
     def is_root(self, p):
         #checks if p is root
