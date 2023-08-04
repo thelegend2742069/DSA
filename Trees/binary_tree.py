@@ -1,7 +1,7 @@
 #binary tree abstract class
 #most of the code is same as tree.py
 
-class Tree:
+class BinaryTree:
     #------------------------------Position Class------------------------------
     class Position:
         def element(self):
