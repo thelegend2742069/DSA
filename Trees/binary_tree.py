@@ -47,7 +47,27 @@ class Tree:
     def is_leaf(self, p):
         #checks if p is leaf
         return self.num_children(p) == 0
-        
+    
+    def left(self, p):
+        #return left child of p (None if no left chlid)
+        raise NotImplementedError("Method must be implemented in SubClass")
+    
+    def right(self, p):
+        #return right child of p (None if no right chlid)
+        raise NotImplementedError("Method must be implemented in SubClass")
+    
+    def sibling(self, p):
+        #returns sibling of p
+        parent = self.parent()
+
+        if self.is_root(parent):    #no sibling if root
+            return None
+
+        if p == self.left(parent):
+            return self.right(parent)
+        else:
+            return self.left(parent)
+
     def depth(self, p):
         #returns depth of position
         if p.is_root():
