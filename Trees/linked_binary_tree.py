@@ -34,7 +34,7 @@ class LinkedBinary(BinaryTree):
             raise ValueError("position does not belong to this tree")
         
         if p._node.parent == p._node:                                           #check if node is depreciated
-            raise ValueError("node has been depreciated")                       #depreciated nodes are their own parents
+            raise ValueError("node has been depreciated")                       #depreciated nodes is its own parents
 
         return p._node
     
@@ -53,21 +53,26 @@ class LinkedBinary(BinaryTree):
     def __len__(self):
         return self._size
     
+    #return root node
     def root(self):
         return self._root
     
+    #return parent node
     def parent(self, p):
         node = self._validate(p)
         return self.make_position(node._parent)
     
+    #return left child
     def left(self, p):
         node = self._validate(p)
         return self.make_position(node._left)
     
+    #return right child
     def right(self, p):
         node = self._validate(p)
         return self.make_position(node._right)
     
+    #return number of children
     def num_children(self, p):
         node = self._validate(p)
         num = 0
@@ -136,8 +141,8 @@ class LinkedBinary(BinaryTree):
             else:
                 parent._right = child
         
-        node._parent = node
-        self._size -= 1
+        node._parent = node                                                     #depreciate node
+        self._size -= 1                                                         #depreciated nodes are is its own parent
 
         return node._element
     
