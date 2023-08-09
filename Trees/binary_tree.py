@@ -44,6 +44,15 @@ class BinaryTree:
         #checks if p is leaf
         return self.num_children(p) == 0
     
+    def positions(self):
+        #return a list of positions in the tree elements
+        raise NotImplementedError("no traversal method selected to call")
+    
+    def __iter__(self):
+        #generate an iteration of tree elements
+        for p in self.positions():
+            yield p.element()
+    
     def left(self, p):
         #return left child of p (None if no left chlid)
         raise NotImplementedError("Method must be implemented in SubClass")
