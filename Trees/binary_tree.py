@@ -28,10 +28,6 @@ class BinaryTree:
         #returns number of children of p
         raise NotImplementedError("Method must be implemented in SubClass")
     
-    def children(self, p):
-        #generates iteration of position of p's children
-        raise NotImplementedError("Method must be implemented in SubClass")
-    
     def __len__(self):
         raise NotImplementedError("Method must be implemented in SubClass")
     
@@ -67,6 +63,14 @@ class BinaryTree:
             return self.right(parent)
         else:
             return self.left(parent)
+
+    def children(self, p):
+        #generates iteration of position of p's children
+        if self.left(p) is not None:
+            yield self.left(p)
+        
+        if self.right(self, p) is not None:
+            yield self.right(p)
 
     def depth(self, p):
         #returns depth of position
