@@ -1,5 +1,4 @@
 #binary tree abstract class
-#most of the code is same as tree.py
 from tree import Tree
 
 class BinaryTree(Tree):    
@@ -33,3 +32,30 @@ class BinaryTree(Tree):
         
         if self.right(self, p) is not None:
             yield self.right(p)
+    
+    def positions(self):
+        #generate an iteration of positions in the tree
+        return self.inorder_traverse()
+
+
+    #----------------------------traversal method--------------------------------
+    def inorder_traverse(self):
+        #generate an iteration of all postitions in a tree
+        if not self.is_empty():
+            for p in self._subtree_inorder(self.root()):
+                yield p
+
+    def _subtree_inorder(self, p):
+        #generate an iteration of positions in subtree rooted at p
+
+        if self.left(p) is not None:
+            #inorder traverse left child of p
+            for other in self._subtree_inorder(self.left(p)):
+                yield other
+
+        yield p
+
+        if self.right(p) is not None:
+            #inorder traverse right child of p
+            for other in self._subtree_inorder(self.right(p)):
+                yield other
