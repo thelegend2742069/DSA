@@ -1,5 +1,6 @@
 #tree abstract class
-
+import sys
+from ..Queues.queue import Queues
 class Tree:
     #------------------------------Position Class------------------------------
     class Position:
@@ -71,3 +72,43 @@ class Tree:
             return 0
         
         return 1 + max(self.height_calc(c) for c in self.children(p))
+        
+
+    #----------------------------traversal methods-------------------------------
+    
+    def preorder_traverse(self):
+        if not self.is_empty():
+            for p in self._subtree_preorder(self.root()):
+                yield p
+
+    def _subtree_preorder(self, p):
+        yield p
+        for c in self.children(p):
+            for other in self._subtree_preorder(c):
+                yield other
+
+    def postorder_traverse(self):
+        if not self.is_empty():
+            for p in self._subtree_postorder(self.root()):
+                yield p
+    
+    def _subtree_postorder(self, p):
+        for c in self.children(p):
+            for other in self._subtree_postorder(c):
+                yield other
+        yield p
+    
+    def breadth_first_traverse(self):
+        if not self.is_empty():
+            node_queue = Queues()
+            node_queue.enqueue(self.root())
+        
+        while not node_queue.is_empty():
+            p = node_queue.dequeue()
+            yield p
+
+            for c in self.children(p):
+                node_queue.enqueue(c)
+            
+
+    
