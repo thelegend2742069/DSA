@@ -51,6 +51,9 @@ class Tree:
     def positions(self):
         #generate an iteration of all positions in the tree
         raise NotImplementedError("no traversal method selected to call")
+        #return self.preorder_traverse()
+        #return self.postorder_traverse()
+        #return self.breadth_first_traverse()
     
     def __iter__(self):
         #generate an iteration of tree elements
@@ -100,7 +103,7 @@ class Tree:
     def _subtree_postorder(self, p):
         #iterate over positions of a subtree rooted at p
         #in postorder traversal
-        
+
         for c in self.children(p):
             for other in self._subtree_postorder(c):
                 yield other
