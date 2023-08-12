@@ -54,3 +54,27 @@ class HeapPriorityQueue(PriorityQueueBase):
             if self._data[smaller] < self._data[element_index]:
                 self._swap(element_index, smaller)
                 self._downheap(smaller)
+
+    #----------------------------------public methods---------------------------------------
+    def is_empty(self):
+        return len(self._data) == 0
+    
+    def add(self, key, value):
+        self._data += self.Item(key, value)
+        self._upheap(self._data[-1])
+    
+    def min(self):
+        if self.is_empty():
+            raise ValueError("queue is empty")
+
+        item = self._data[0]
+        return (item._key, item._value)
+    
+    def remove_min(self):
+        if self.is_empty():
+            raise ValueError("queue is empty")
+        
+        self._swap(0, len(self)-1)
+        item = self._data.pop()
+        self._downheap(0)
+        return (item._key, item._value)
