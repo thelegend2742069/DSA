@@ -10,6 +10,7 @@ class HeapPriorityQueue(PriorityQueueBase):
 
     #----------------------------------private methods-------------------------------------
     def _parent(self, index):
+        '''Returns index of parent.'''
         parent_index = index-1 // 2
         return parent_index
     
