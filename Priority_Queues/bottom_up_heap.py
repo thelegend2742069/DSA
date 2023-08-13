@@ -18,7 +18,7 @@ class BottomUpHeap(HeapPriorityQueue):
     #------------------------------method----------------------------------
     def _heapify(self):
         #no sorting required for leaf items
-        #downheap all elements one level above leaf
-        parent_index = len(self._data) - 1
+        #downheap all elements above leaf level
+        parent_index = self._parent(len(self._data) - 1)
         for index in range(parent_index, -1, -1):
             self._downheap(index)
